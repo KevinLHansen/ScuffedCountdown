@@ -1,0 +1,60 @@
+﻿@page "/countdown"
+
+@using ScuffedCountdown.Data
+@using ScuffedCountdown.Services
+@using static ScuffedCountdown.Services.DrawValueService
+
+<h1>Countdown</h1>
+
+<button @onclick="DrawLowNumber">Draw low number</button>
+<button @onclick="DrawHighNumber">Draw high number</button>
+<button @onclick="DrawVowel">Draw vowel</button>
+<button @onclick="DrawConsonant">Draw consonant</button>
+
+<h3 style="margin: 25px 0px 0px 0px">@viewModel.Debug</h3> 
+
+@code {
+    CountdownViewModel viewModel = new CountdownViewModel();
+
+    private void DrawHighNumber()
+    {
+        viewModel.Debug += " " + viewModel.NumbersProvider.DrawValue(Data.ValueType.HighNumber);
+    }
+
+    private void DrawLowNumber()
+    {
+        viewModel.Debug +=  " " + viewModel.NumbersProvider.DrawValue(Data.ValueType.LowNumber);
+    }
+
+    private void DrawVowel()
+    {
+        viewModel.Debug +=  " " + viewModel.LettersProvider.DrawValue(Data.ValueType.Vowel);
+    }
+
+    private void DrawConsonant()
+    {
+        viewModel.Debug +=  " " + viewModel.LettersProvider.DrawValue(Data.ValueType.Consonant);
+    }
+
+    public class CountdownViewModel
+    {
+        public string Debug = "Stun seed: ";
+
+        public List<char> LettersSequence;
+        public List<int> NumberSequence;
+
+        public DrawValueService LettersProvider;
+        public DrawValueService NumbersProvider;
+
+        public CountdownViewModel()
+        {
+            NumberSequence = new List<int>();
+            LettersSequence = new List<char>();
+
+            NumbersProvider = new DrawValueService(ServiceType.Numbers);
+            LettersProvider = new DrawValueService(ServiceType.Letters);
+
+        }
+    }
+
+}
