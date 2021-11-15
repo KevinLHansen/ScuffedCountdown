@@ -6,11 +6,13 @@ namespace ScuffedCountdown.Services
     public class DrawValueService
     {
         private List<DrawableValueBase> Values;
+        private ServiceType Type;
         private Random Rng;
 
         public DrawValueService(ServiceType type)
         {
             Values = new List<DrawableValueBase>();
+            Type = type;
             switch (type)
             {
                 case ServiceType.Numbers:
@@ -75,6 +77,19 @@ namespace ScuffedCountdown.Services
                 }
             }
             return null;
+        }
+
+        public void Reset()
+        {
+            switch (Type)
+            {
+                case ServiceType.Numbers:
+                    InitializeNumbers();
+                    break;
+                case ServiceType.Letters:
+                    InitializeLetters();
+                    break;
+            }
         }
 
         private int GetAmountsTotal(IEnumerable<DrawableValueBase> values)
