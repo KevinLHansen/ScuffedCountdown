@@ -1,0 +1,16 @@
+﻿.icon-btn {
+  cursor: pointer;
+  transition: color var(--k-anim-duration-default);
+}
+.icon-btn.light {
+  color: var(--k-color-primary-80);
+}
+.icon-btn.light:hover {
+  color: var(--k-color-primary-90);
+}
+.icon-btn.dark {
+  color: var(--k-color-primary-20);
+}
+.icon-btn.dark:hover {
+  color: var(--k-color-primary-30);
+}

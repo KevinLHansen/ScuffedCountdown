@@ -1,0 +1,29 @@
+﻿@mixin active {
+    background: var(--k-color-background);
+    color: var(--k-color-primary-20);
+}
+
+.link {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 8px;
+    text-align: center;
+    color: var(--k-color-primary-80);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    flex: 1;
+    transition: all var(--k-anim-duration-default);
+
+    &:hover {
+        background: var(--k-color-primary-80);
+        color: var(--k-color-primary-20);
+    }
+
+    &:active, &.active {
+        @include active;
+    }
+}

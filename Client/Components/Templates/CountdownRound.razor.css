@@ -1,0 +1,6 @@
+﻿.round {
+  display: grid;
+  grid-template-rows: auto min-content;
+  height: 100%;
+  width: 100%;
+}

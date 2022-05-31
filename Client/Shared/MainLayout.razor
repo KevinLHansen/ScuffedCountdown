@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="top-bar">
+        <div class="nav-container unselectable">
+            <KNavLink Text="NUMBERS" NavigationString="numbers" />
+            <KNavLink Text="LETTERS" NavigationString="letters" />
+        </div>
+        <div class="settings-btn @_SettingsButtonCssClasses">
+            <KIconButton OnClick=_SettingsButton_OnClick IconName="gear" Size=KIconButtonSize.Medium Style=KIconButtonStyle.Light />
+        </div>
+    </div>
+    <div class="body">
+        @Body
+    </div>
+
+    <div class="settings @_SettingsCssClasses">
+        <div class="color-picker">
+            <input id=@_ColorPickerInputId type="color" @onchange=ColorPicker_OnChange />
+            <KButton OnClick=ColorPickerButton_OnClick Style=KButtonStyle.Light>
+                <KIcon IconName="palette" Size=32 />
+                Theme color
+            </KButton>
+        </div>
+    </div>
+</div>

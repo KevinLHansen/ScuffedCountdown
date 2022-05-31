@@ -1,0 +1,33 @@
+﻿.k-button {
+  font-family: var(--k-type-font-primary);
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  background: var(--k-color-primary-80);
+  border: none;
+  color: var(--k-color-primary-20);
+  padding: 12px;
+  gap: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--k-anim-duration-default);
+  white-space: nowrap;
+}
+.k-button.light {
+  background: var(--k-color-primary-80);
+  color: var(--k-color-primary-20);
+}
+.k-button.light:hover {
+  background: var(--k-color-primary-90);
+}
+.k-button.dark {
+  background: var(--k-color-primary-20);
+  color: var(--k-color-primary-80);
+}
+.k-button.dark:hover {
+  background: var(--k-color-primary-30);
+}
+.k-button ::deep * {
+  cursor: pointer;
+}

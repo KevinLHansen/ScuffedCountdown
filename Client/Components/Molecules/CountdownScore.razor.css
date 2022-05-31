@@ -1,0 +1,23 @@
+﻿.container {
+  display: flex;
+  align-items: center;
+}
+.container .btn {
+  color: var(--k-color-primary-20);
+  cursor: pointer;
+  transition: color var(--k-anim-duration-default);
+}
+.container .btn:hover {
+  color: var(--k-color-primary-40);
+}
+.container .score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 64px;
+  border-radius: 4px;
+  background: var(--k-color-primary-20);
+  font-size: 48px;
+  color: var(--k-color-primary-90);
+}

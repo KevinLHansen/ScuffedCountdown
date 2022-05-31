@@ -1,0 +1,61 @@
+﻿.page {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content auto;
+}
+.page .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--k-color-primary-20);
+  height: 100px;
+  transition: background-color var(--k-anim-duration-default);
+}
+.page .top-bar .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 496px);
+  height: 100%;
+}
+.page .top-bar .settings-btn {
+  position: absolute;
+  right: 32px;
+  transition: transform var(--k-anim-duration-default);
+}
+.page .top-bar .settings-btn.active {
+  transform: rotate(45deg);
+}
+.page .body {
+  background: var(--k-color-background);
+  transition: background-color var(--k-anim-duration-default);
+}
+.page .settings {
+  position: absolute;
+  background: var(--k-color-primary-80);
+  padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 15px 5px;
+  top: 100px;
+  left: 100vw;
+  transition: transform var(--k-anim-duration-default);
+}
+.page .settings.visible {
+  transform: translate(-100%, 0);
+}
+.page .settings .color-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.page .settings .color-picker input {
+  visibility: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  bottom: 0;
+}

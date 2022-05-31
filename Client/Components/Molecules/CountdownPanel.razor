@@ -1,0 +1,12 @@
+﻿<div class="panel">
+    <div>
+        <CountdownScore Team="team1"/>
+    </div>
+    <div class="timer @_TimerClasses">
+        <KIconButton OnClick=Timer_OnClick IconName="stopwatch" Size=KIconButtonSize.Large />
+        <audio id="@_AudioId" src="/sfx/countdown.mp3" @onended=@(() => _IsPlaying = false) />
+    </div>
+    <div>
+        <CountdownScore Team="team2" />
+    </div>
+</div>

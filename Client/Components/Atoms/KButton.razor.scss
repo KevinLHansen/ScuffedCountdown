@@ -1,0 +1,42 @@
+﻿@mixin typography {
+    font-family: var(--k-type-font-primary);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.k-button {
+    @include typography;
+    display: flex;
+    align-items: center;
+    background: var(--k-color-primary-80);
+    border: none;
+    color: var(--k-color-primary-20);
+    padding: 12px;
+    gap: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--k-anim-duration-default);
+    white-space: nowrap;
+
+    &.light {
+        background: var(--k-color-primary-80);
+        color: var(--k-color-primary-20);
+        
+        &:hover {
+            background: var(--k-color-primary-90);
+        }
+    }
+
+    &.dark {
+        background: var(--k-color-primary-20);
+        color: var(--k-color-primary-80);
+
+        &:hover {
+            background: var(--k-color-primary-30);
+        }
+    }
+
+    ::deep * {
+        cursor: pointer;
+    }
+}

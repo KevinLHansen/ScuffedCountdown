@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "Shared/MainLayout.razor.css",
+    "inputFile": "Shared/MainLayout.razor.scss"
+  },
+  {
+    "outputFile": "Components/Atoms/KButton.razor.css",
+    "inputFile": "Components/Atoms/KButton.razor.scss"
+  },
+  {
+    "outputFile": "Components/Atoms/KNavLink.razor.css",
+    "inputFile": "Components/Atoms/KNavLink.razor.scss"
+  },
+  {
+    "outputFile": "Components/Templates/CountdownRound.razor.css",
+    "inputFile": "Components/Templates/CountdownRound.razor.scss"
+  },
+  {
+    "outputFile": "Components/Molecules/CountdownPanel.razor.css",
+    "inputFile": "Components/Molecules/CountdownPanel.razor.scss"
+  },
+  {
+    "outputFile": "Components/Atoms/KIcon.razor.css",
+    "inputFile": "Components/Atoms/KIcon.razor.scss"
+  },
+  {
+    "outputFile": "Components/Molecules/CountdownScore.razor.css",
+    "inputFile": "Components/Molecules/CountdownScore.razor.scss"
+  },
+  {
+    "outputFile": "Components/Atoms/KIconButton.razor.css",
+    "inputFile": "Components/Atoms/KIconButton.razor.scss"
+  }
+]
