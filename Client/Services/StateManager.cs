@@ -17,7 +17,6 @@ namespace ScuffedCountdown.Client.Services
         /// <summary>
         /// Attempts to read state from local browser storage, creates new state instance if unsuccessful.
         /// </summary>
-        /// <returns></returns>
         public async Task<ScuffedCountdownState> GetState()
         {
             var state = await _LocalStorage.GetItemAsync<ScuffedCountdownState>(STATE_KEY);
@@ -25,10 +24,12 @@ namespace ScuffedCountdown.Client.Services
         }
 
         /// <summary>
-        /// Saves state in local browser storage.
+        /// Applies modifications defined in <paramref name="stateModifier"/> to state stored in browser.
         /// </summary>
-        public async Task SaveState(ScuffedCountdownState state)
+        public async Task ModifyState(Action<ScuffedCountdownState> stateModifier)
         {
+            var state = await _LocalStorage.GetItemAsync<ScuffedCountdownState>(STATE_KEY);
+            stateModifier.Invoke(state);
             await _LocalStorage.SetItemAsync(STATE_KEY, state);
         }
     }

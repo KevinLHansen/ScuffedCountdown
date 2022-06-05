@@ -1,6 +1,7 @@
 ﻿using BlazorComponentUtilities;
 using ColorHelper;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using ScuffedCountdown.Client.Services;
 
 namespace ScuffedCountdown.Client.Shared
@@ -11,9 +12,27 @@ namespace ScuffedCountdown.Client.Shared
         private CommonJsService _CommonJs { get; set; } = default!;
         [Inject]
         private StateManager _StateManager { get; set; } = default!;
+        [Inject]
+        private IJSRuntime _JsRuntime { get; set; } = default;
+
+        private IJSObjectReference _Js { get; set; } = default;
 
         private bool _SettingsVisible = false;
         private string _ColorPickerInputId = Guid.NewGuid().ToString();
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            _Js = await _JsRuntime.InvokeAsync<IJSObjectReference>("import", $"./Shared/MainLayout.razor.js");
+            await SetColorPickerInputValue();
+        }
+
+        private async Task SetColorPickerInputValue()
+        {
+            var themeColor = (await _StateManager.GetState()).UserSettings.ThemeColor;
+            await _Js.InvokeVoidAsync("setColorInputValue", _ColorPickerInputId, $"#{ColorConverter.HslToHex(themeColor)}");
+        }
 
         private string _SettingsButtonCssClasses => new CssBuilder()
             .AddClass("active", when: _SettingsVisible)
@@ -42,9 +61,10 @@ namespace ScuffedCountdown.Client.Shared
             var hsl = ColorConverter.HexToHsl(new HEX((string)color));
             await _CommonJs.SetMasterColor(hsl.H, hsl.S);
 
-            var state = await _StateManager.GetState();
-            state.UserSettings.ThemeColor = hsl;
-            await _StateManager.SaveState(state);
+            await _StateManager.ModifyState(stateModifer =>
+            {
+                stateModifer.UserSettings.ThemeColor = hsl;
+            });
         }
     }
 }
