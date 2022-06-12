@@ -11,16 +11,29 @@ namespace ScuffedCountdown.Client.Components.Molecules
         [Parameter]
         public string Team { get; set; } = string.Empty;
 
-        private int _Score => _CountdownManager.GetScore(Team);
-
-        private void SubtractScore()
+        protected override async Task OnInitializedAsync()
         {
-            _CountdownManager.SubtractScore(Team, 1);
+            await UpdateScore();
+            await base.OnInitializedAsync();
         }
 
-        private void AddScore()
+        private int _Score = 0;
+
+        private async Task SubtractScore()
         {
-            _CountdownManager.AddScore(Team, 1);
+            await _CountdownManager.SubtractScore(Team, 1);
+            await UpdateScore();
+        }
+
+        private async Task AddScore()
+        {
+            await _CountdownManager.AddScore(Team, 1);
+            await UpdateScore();
+        }
+
+        private async Task UpdateScore()
+        {
+            _Score = await _CountdownManager.GetScore(Team);
         }
     }
 }

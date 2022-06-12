@@ -18,8 +18,8 @@ services
 
 // Internal services
 services
-    .AddSingleton<ICountdownManager, CountdownManager>()
-    .AddSingleton<CommonJsService>()
+    .AddScoped<ICountdownManager, CountdownManager>()
+    .AddScoped<CommonJsService>()
     .AddScoped<StateManager>();
 
 await builder.Build().RunAsync();

@@ -14,13 +14,23 @@ namespace ScuffedCountdown.Client.Services
             _LocalStorage = localStorage;
         }
 
+        public async Task Initalize()
+        {
+            var state = await GetState();
+            if (state == null)
+                await _LocalStorage.SetItemAsync(STATE_KEY, new ScuffedCountdownState());
+        }
+
         /// <summary>
         /// Attempts to read state from local browser storage, creates new state instance if unsuccessful.
         /// </summary>
         public async Task<ScuffedCountdownState> GetState()
         {
             var state = await _LocalStorage.GetItemAsync<ScuffedCountdownState>(STATE_KEY);
-            return state ?? new();
+            if (state == null)
+                throw new Exception($"{nameof(ScuffedCountdownState)} not found in LocalStorage");
+
+            return state;
         }
 
         /// <summary>

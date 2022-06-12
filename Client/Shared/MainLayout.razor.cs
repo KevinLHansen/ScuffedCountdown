@@ -13,9 +13,9 @@ namespace ScuffedCountdown.Client.Shared
         [Inject]
         private StateManager _StateManager { get; set; } = default!;
         [Inject]
-        private IJSRuntime _JsRuntime { get; set; } = default;
+        private IJSRuntime _JsRuntime { get; set; } = default!;
 
-        private IJSObjectReference _Js { get; set; } = default;
+        private IJSObjectReference _Js { get; set; } = default!;
 
         private bool _SettingsVisible = false;
         private string _ColorPickerInputId = Guid.NewGuid().ToString();
@@ -31,7 +31,8 @@ namespace ScuffedCountdown.Client.Shared
         private async Task SetColorPickerInputValue()
         {
             var themeColor = (await _StateManager.GetState()).UserSettings.ThemeColor;
-            await _Js.InvokeVoidAsync("setColorInputValue", _ColorPickerInputId, $"#{ColorConverter.HslToHex(themeColor)}");
+            if (themeColor != null)
+                await _Js.InvokeVoidAsync("setColorInputValue", _ColorPickerInputId, $"#{ColorConverter.HslToHex(themeColor)}");
         }
 
         private string _SettingsButtonCssClasses => new CssBuilder()
@@ -61,9 +62,9 @@ namespace ScuffedCountdown.Client.Shared
             var hsl = ColorConverter.HexToHsl(new HEX((string)color));
             await _CommonJs.SetMasterColor(hsl.H, hsl.S);
 
-            await _StateManager.ModifyState(stateModifer =>
+            await _StateManager.ModifyState(state =>
             {
-                stateModifer.UserSettings.ThemeColor = hsl;
+                state.UserSettings.ThemeColor = hsl;
             });
         }
     }
