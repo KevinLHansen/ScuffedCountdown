@@ -1,6 +1,36 @@
-﻿<div class="round">
+﻿@typeparam T
+
+<div class="round">
     <div class="body">
-        yep
+
+        <div class="drawn-values">
+
+            @for (int i = 0; i < _DrawnValues.Count(); i++)
+            {
+                var value = _DrawnValues[i];
+                <div class="value">
+                    @if (value != null)
+                    {
+                        @value.Value
+                    }
+                    @if (i == _DrawnValues.Count() - 1 && _HasDraws)
+                    {
+                        <div class="reset-btn">
+                            <KIconButton IconName="arrow-rotate-left" Size=KIconButtonSize.Medium OnClick=@(() => Reset()) />
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="draw-buttons">
+            <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Primary))>
+                @_DrawPrimaryLabel
+            </KButton>
+            <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Secondary))>
+                @_DrawSecondaryLabel
+            </KButton>
+        </div>
     </div>
     <div class="footer">
         <CountdownPanel />

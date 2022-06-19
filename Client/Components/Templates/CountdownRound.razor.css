@@ -4,3 +4,38 @@
   height: 100%;
   width: 100%;
 }
+.round .body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 72px 32px 32px 32px;
+}
+.round .body .drawn-values {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.round .body .drawn-values .value {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 38px;
+  width: 80px;
+  height: 120px;
+  background: white;
+  border-top: 4px solid var(--k-color-primary-30);
+  border-bottom: 4px solid var(--k-color-primary-30);
+}
+.round .body .drawn-values .value .reset-btn {
+  position: absolute;
+  right: 0;
+  transform: translate(calc(100% + 16px), 0);
+}
+.round .body .draw-buttons {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 400px);
+  gap: 16px;
+}

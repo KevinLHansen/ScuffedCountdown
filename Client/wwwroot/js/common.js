@@ -7,3 +7,7 @@
 export function clickElement(id) {
     document.getElementById(id).click();
 }
+
+export function alert1(message) {
+    alert(message);
+}

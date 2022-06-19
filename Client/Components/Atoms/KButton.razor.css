@@ -4,6 +4,7 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: var(--k-color-primary-80);
   border: none;
   color: var(--k-color-primary-20);

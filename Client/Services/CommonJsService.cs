@@ -22,5 +22,11 @@ namespace ScuffedCountdown.Client.Services
             var module = await _ModuleTask;
             await module.InvokeVoidAsync("clickElement", id);
         }
+
+        public async Task Alert(string message)
+        {
+            var module = await _ModuleTask;
+            await module.InvokeVoidAsync("alert1", message);
+        }
     }
 }
