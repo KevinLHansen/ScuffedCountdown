@@ -7,7 +7,7 @@
 .round .body {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 64px;
   padding: 72px 32px 32px 32px;
 }
 .round .body .drawn-values {
@@ -32,6 +32,10 @@
   position: absolute;
   right: 0;
   transform: translate(calc(100% + 16px), 0);
+}
+.round .body .evaluator {
+  display: flex;
+  justify-content: center;
 }
 .round .body .draw-buttons {
   display: grid;

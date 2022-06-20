@@ -1,0 +1,23 @@
+﻿<div class="numbers-round-evaluator">
+    <div class="target">
+        @_TargetNumber
+        @if (!_ShowTargetNumber)
+        {
+            <div class="overlay" @onclick=@(() => _ShowTargetNumber = true)>
+                TARGET
+                <KIcon IconName="lock" Size=32 />
+            </div>
+        }
+    </div>
+
+    <input class="calculator-input" type="text" placeholder="Calculator" @onchange=@Calculator_OnChange />
+
+    <div class="results-table">
+        @foreach (var result in _CalculationResults)
+        {
+            <div>@result</div>
+            <div>@(Math.Abs(result - _TargetNumber) * (-1))</div>
+        }
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace ScuffedCountdown.Client.Services
+namespace ScuffedCountdown.Client.Extensions
 {
     public static class ObjectExtensions
     {

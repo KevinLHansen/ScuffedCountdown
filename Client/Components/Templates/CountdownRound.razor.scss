@@ -7,7 +7,7 @@
     .body {
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: 64px;
         padding: 72px 32px 32px 32px;
 
         .drawn-values {
@@ -34,6 +34,11 @@
                     transform: translate(calc(100% + 16px), 0);
                 }
             }
+        }
+
+        .evaluator {
+            display: flex;
+            justify-content: center;
         }
 
         .draw-buttons {

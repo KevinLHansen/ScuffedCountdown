@@ -30,5 +30,9 @@
   {
     "outputFile": "Components/Atoms/KIconButton.razor.css",
     "inputFile": "Components/Atoms/KIconButton.razor.scss"
+  },
+  {
+    "outputFile": "Components/Molecules/NumbersRoundEvaluator.razor.css",
+    "inputFile": "Components/Molecules/NumbersRoundEvaluator.razor.scss"
   }
 ]

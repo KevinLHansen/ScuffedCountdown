@@ -9,6 +9,7 @@
     --k-color-primary-40: hsl(var(--k-color-primary-base), 40%);
     --k-color-primary-50: hsl(var(--k-color-primary-base), 50%);
     --k-color-primary-60: hsl(var(--k-color-primary-base), 60%);
+    --k-color-primary-70: hsl(var(--k-color-primary-base), 70%);
     --k-color-primary-80: hsl(var(--k-color-primary-base), 80%);
     --k-color-primary-90: hsl(var(--k-color-primary-base), 90%);
     /* Color alias */

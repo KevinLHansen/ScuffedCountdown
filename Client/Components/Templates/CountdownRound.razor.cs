@@ -18,6 +18,7 @@ namespace ScuffedCountdown.Client.Components.Templates
         private List<DrawnValue<T>?> _OverdrawnValues = new();
 
         private bool _HasDraws = false;
+        private bool _AllDrawn => _DrawnValues.Where(x => x != null).Count() == _DrawnValues.Count;
 
         private string _DrawPrimaryLabel => Type switch
         {

@@ -1,5 +1,5 @@
 ﻿
-using System.Text.Json;
+using ScuffedCountdown.Client.Extensions;
 
 namespace ScuffedCountdown.Client.Services
 {

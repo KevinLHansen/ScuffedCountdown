@@ -23,13 +23,30 @@
             }
         </div>
 
-        <div class="draw-buttons">
-            <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Primary))>
-                @_DrawPrimaryLabel
-            </KButton>
-            <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Secondary))>
-                @_DrawSecondaryLabel
-            </KButton>
+        @if (!_AllDrawn)
+        {
+            <div class="draw-buttons">
+                <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Primary))>
+                    @_DrawPrimaryLabel
+                </KButton>
+                <KButton Style=KButtonStyle.Dark OnClick=@(async () => await DrawValue(ValueCategory.Secondary))>
+                    @_DrawSecondaryLabel
+                </KButton>
+            </div>
+        }
+
+        <div class="evaluator">
+            @if (_AllDrawn)
+            {
+                @switch (Type)
+                {
+                    case CountdownRoundType.Numbers:
+                        <NumbersRoundEvaluator Numbers=@(_DrawnValues.Select(x => Convert.ToInt32(x.Value)).ToList()) />
+                        break;
+                    case CountdownRoundType.Letters:
+                        break;
+                }
+            }
         </div>
     </div>
     <div class="footer">
