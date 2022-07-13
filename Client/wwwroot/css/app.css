@@ -12,8 +12,19 @@
     --k-color-primary-70: hsl(var(--k-color-primary-base), 70%);
     --k-color-primary-80: hsl(var(--k-color-primary-base), 80%);
     --k-color-primary-90: hsl(var(--k-color-primary-base), 90%);
+    --k-color-neutral-base: 4, 0%;
+    --k-color-neutral-10: hsl(var(--k-color-neutral-base), 10%);
+    --k-color-neutral-20: hsl(var(--k-color-neutral-base), 20%);
+    --k-color-neutral-30: hsl(var(--k-color-neutral-base), 30%);
+    --k-color-neutral-40: hsl(var(--k-color-neutral-base), 40%);
+    --k-color-neutral-50: hsl(var(--k-color-neutral-base), 50%);
+    --k-color-neutral-60: hsl(var(--k-color-neutral-base), 60%);
+    --k-color-neutral-70: hsl(var(--k-color-neutral-base), 70%);
+    --k-color-neutral-80: hsl(var(--k-color-neutral-base), 80%);
+    --k-color-neutral-90: hsl(var(--k-color-neutral-base), 90%);
+    --k-color-neutral-95: hsl(var(--k-color-neutral-base), 95%);
     /* Color alias */
-    --k-color-background: var(--k-color-primary-90);
+    --k-color-background: var(--k-color-neutral-95);
     /* Animation */
     --k-anim-duration-default: 200ms;
     /* Typography */
