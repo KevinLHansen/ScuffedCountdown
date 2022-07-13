@@ -37,6 +37,7 @@
     .body {
         background: var(--k-color-background);
         transition: background-color var(--k-anim-duration-default);
+        overflow-y: auto;
     }
 
     .settings {

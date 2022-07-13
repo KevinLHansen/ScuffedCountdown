@@ -1,0 +1,29 @@
+﻿<div class="letters-round-evaluator">
+
+    <input class="dictionary-input" type="text" placeholder="Dictionary lookup" @oninput=DictionaryInput_OnInput @onkeydown=DictionaryInput_OnKeyDown/>
+
+    @if (_Definition != null)
+    {
+        <div class="definition-container">
+
+            <div class="header">
+                <span class="word">@_Definition.Word</span>
+                <span class="phonetic">@_Definition.Phonetics.FirstOrDefault(x => x.Text != null)?.Text</span>
+            </div>
+
+            @foreach (var meaning in _Definition.Meanings)
+            {
+                <div class="meaning">
+                    <div class="part-of-speech">@meaning.PartOfSpeech</div>
+
+                    @foreach (var definition in meaning.Definitions)
+                    {
+                        <div class="definition">@definition.Definition</div>
+                    }
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

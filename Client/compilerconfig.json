@@ -34,5 +34,9 @@
   {
     "outputFile": "Components/Molecules/NumbersRoundEvaluator.razor.css",
     "inputFile": "Components/Molecules/NumbersRoundEvaluator.razor.scss"
+  },
+  {
+    "outputFile": "Components/Molecules/LettersRoundEvaluator.razor.css",
+    "inputFile": "Components/Molecules/LettersRoundEvaluator.razor.scss"
   }
 ]

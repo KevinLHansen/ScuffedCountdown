@@ -51,6 +51,19 @@ html, body {
     -moz-user-select: none;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--k-color-primary-20);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--k-color-primary-40);
+}
 
 /* idk mby delete */
 

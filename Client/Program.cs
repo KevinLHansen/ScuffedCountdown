@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using ScuffedCountdown.Client;
 using ScuffedCountdown.Client.Services;
+using ScuffedCountdown.Client.APIs;
+using Refit;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -21,5 +23,13 @@ services
     .AddScoped<ICountdownManager, CountdownManager>()
     .AddScoped<CommonJsService>()
     .AddScoped<StateManager>();
+
+// APIs
+services
+    .AddRefitClient<IFreeDictionaryApi>()
+    .ConfigureHttpClient(conf =>
+    {
+        conf.BaseAddress = IFreeDictionaryApi.BaseUri;
+    });
 
 await builder.Build().RunAsync();
