@@ -19,6 +19,9 @@ jobs:
       - name: Publish
         run: dotnet publish Server/ScuffedCountdown.Server.csproj -c Release -o release --nologo
         
+      - name: Set base path
+        run: sed -i 's/<base href="\/" \/>/<base href="\/ScuffedCountdown\/" \/>/g' release/wwwroot/index.html
+        
       - name: Commit to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
