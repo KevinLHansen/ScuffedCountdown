@@ -82,12 +82,7 @@ namespace ScuffedCountdown.Client.Components.Molecules
 
             if (_LastInput.Count() > value.Count()) // Backspace
             {
-                char deletedChar;
-                if (value == "")
-                    deletedChar = Convert.ToChar(_LastInput);
-                else
-                    deletedChar = Convert.ToChar(_LastInput.Replace(value, ""));
-
+                var deletedChar = _LastInput.Last();
                 _LastInput = value;
                 _AvailableLetters.Add(deletedChar);
                 return;
