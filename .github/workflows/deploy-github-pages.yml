@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 6.0.*
           
       - name: Publish
-        run: dotnet publish Server/ScuffedCountdown.Server.csproj -c Release -o release --nologo
+        run: dotnet publish ScuffedCountdown.Server/ScuffedCountdown.Server.csproj -c Release -o release --nologo
         
       - name: Set base path
         run: sed -i 's/<base href="\/" \/>/<base href="\/ScuffedCountdown\/" \/>/g' release/wwwroot/index.html
