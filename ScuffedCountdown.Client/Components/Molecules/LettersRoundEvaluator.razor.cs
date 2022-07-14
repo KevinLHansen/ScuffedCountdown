@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using Refit;
 using ScuffedCountdown.Client.APIs;
 using ScuffedCountdown.Client.Extensions;
+using ScuffedCountdown.Client.Services;
 
 namespace ScuffedCountdown.Client.Components.Molecules
 {
@@ -13,6 +14,8 @@ namespace ScuffedCountdown.Client.Components.Molecules
         private IFreeDictionaryApi _DictionaryApi { get; set; } = default!;
         [Inject]
         private IJSRuntime _Js { get; set; } = default!;
+        [Inject]
+        private CommonJsService _CommonJs { get; set; } = default!;
 
         [Parameter, EditorRequired]
         public List<char> Letters { get; set; } = default!;
@@ -21,7 +24,7 @@ namespace ScuffedCountdown.Client.Components.Molecules
         private FreeDictionaryResponse? _Definition { get; set; }
         private IJSObjectReference _JsModule = default!;
 
-        private string _DictionaryInputId { get; set; } = Guid.NewGuid().Short();
+        private string _DictionaryInputId = Guid.NewGuid().Short();
         private string? _DictionaryInputValue { get; set; }
         private string? _LastInput;
 
@@ -54,6 +57,7 @@ namespace ScuffedCountdown.Client.Components.Molecules
                         {
                             // No definition for word
                             _Definition = null;
+                            await _CommonJs.PlayErrorSound();
                         }
                     }
                     break;
@@ -97,7 +101,10 @@ namespace ScuffedCountdown.Client.Components.Molecules
                 _AvailableLetters.Remove(input);
             }
             else
+            {
                 newInput = _LastInput;
+                await _CommonJs.PlayErrorSound();
+            }
 
             await SetDictionaryInputValue(newInput);
             _LastInput = newInput;

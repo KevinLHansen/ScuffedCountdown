@@ -1,7 +1,11 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using ScuffedCountdown.Client.Services
+@inject NavigationManager NavigationManager
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <audio id=@CommonJsService.AUDIO_ERROR_ID src=@($"{NavigationManager.BaseUri}sfx/error.wav") />
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>

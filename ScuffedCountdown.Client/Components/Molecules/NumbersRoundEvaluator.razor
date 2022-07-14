@@ -10,7 +10,7 @@
         }
     </div>
 
-    <input class="calculator-input" type="text" placeholder="Calculator" @onchange=@Calculator_OnChange />
+    <input id=@_CalculatorInputId class="calculator-input" type="text" placeholder="Calculator" @bind=_CalculatorInputValue @onkeyup=CalculatorInput_OnKeyUp @oninput=DictionaryInput_OnInput />
 
     <div class="results-table">
         @foreach (var result in _CalculationResults)

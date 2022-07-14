@@ -11,3 +11,11 @@ export function clickElement(id) {
 export function alert1(message) {
     alert(message);
 }
+
+export function playErrorSound(id) {
+    let player = document.getElementById(id);
+
+    player.volume = 0.5;
+    player.currentTime = 0;
+    player.play();
+}

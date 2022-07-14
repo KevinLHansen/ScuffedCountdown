@@ -4,6 +4,8 @@ namespace ScuffedCountdown.Client.Services
 {
     public class CommonJsService
     {
+        public const string AUDIO_ERROR_ID = "audio-error";
+
         private readonly Task<IJSObjectReference> _ModuleTask;
 
         public CommonJsService(IJSRuntime jsRuntime)
@@ -27,6 +29,12 @@ namespace ScuffedCountdown.Client.Services
         {
             var module = await _ModuleTask;
             await module.InvokeVoidAsync("alert1", message);
+        }
+
+        public async Task PlayErrorSound()
+        {
+            var module = await _ModuleTask;
+            await module.InvokeVoidAsync("playErrorSound", AUDIO_ERROR_ID);
         }
     }
 }
