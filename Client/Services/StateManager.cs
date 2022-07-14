@@ -16,7 +16,7 @@ namespace ScuffedCountdown.Client.Services
 
         public async Task Initalize()
         {
-            var state = await GetState();
+            var state = await _LocalStorage.GetItemAsync<ScuffedCountdownState>(STATE_KEY);
             if (state == null)
                 await _LocalStorage.SetItemAsync(STATE_KEY, new ScuffedCountdownState());
         }
