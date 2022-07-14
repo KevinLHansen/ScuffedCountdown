@@ -33,7 +33,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-Y0JeJWPr4URKA9lV\/7vjHDxcELjb89\/WaRD3PRARY\/c=",
+      "hash": "sha256-ilaxabdCx6ZtkW+4Buw536MpA4Xr9V9iJqOy3IJ2KV8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -121,7 +121,7 @@
       "url": "_framework\/Refit.HttpClientFactory.dll"
     },
     {
-      "hash": "sha256-cPguAoXg+iBMrrgsOZhD465QBeKYOaByMlhgCYorU4w=",
+      "hash": "sha256-hHCSc+9T77EaJXiIRUjvYOcNAs6iyvcLuP4vdw51Udg=",
       "url": "_framework\/ScuffedCountdown.Client.dll"
     },
     {
@@ -273,5 +273,5 @@
       "url": "ScuffedCountdown.Client.styles.css"
     }
   ],
-  "version": "dG744gWN"
+  "version": "JG03uVAG"
 };
