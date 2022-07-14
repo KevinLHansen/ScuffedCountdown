@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 6.0.*
           
       - name: Publish
-        run: dotnet publish ScuffedCountdown.csproj -c Release -o release --nologo
+        run: dotnet publish Server/ScuffedCountdown.Server.csproj -c Release -o release --nologo
         
       - name: Commit to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.3.4
