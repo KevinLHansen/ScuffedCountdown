@@ -44,7 +44,7 @@
                         <NumbersRoundEvaluator Numbers=@(_DrawnValues.Select(x => Convert.ToInt32(x.Value)).ToList()) />
                         break;
                     case CountdownRoundType.Letters:
-                        <LettersRoundEvaluator />
+                        <LettersRoundEvaluator Letters=@(_DrawnValues.Select(x => Convert.ToChar(x.Value)).ToList()) />
                         break;
                 }
             }

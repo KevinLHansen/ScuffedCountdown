@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\ScuffedCountdown.Client.csproj" />
+    <ProjectReference Include="..\ScuffedCountdown.Client\ScuffedCountdown.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<div class="letters-round-evaluator">
 
-    <input class="dictionary-input" type="text" placeholder="Dictionary lookup" @oninput=DictionaryInput_OnInput @onkeydown=DictionaryInput_OnKeyDown/>
+    <input class="dictionary-input" type="text" placeholder="Dictionary lookup" @bind=_DictionaryInputValue @onkeyup=DictionaryInput_OnKeyUp />
 
     @if (_Definition != null)
     {
