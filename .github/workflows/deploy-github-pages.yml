@@ -22,6 +22,9 @@ jobs:
       - name: Set base path
         run: sed -i 's/<base href="\/" \/>/<base href="\/ScuffedCountdown\/" \/>/g' release/wwwroot/index.html
         
+      - name: Disable Jekyll
+        run: touch release/wwwroot/.nojekyll
+        
       - name: Commit to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
