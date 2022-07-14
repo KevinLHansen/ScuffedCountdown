@@ -21,6 +21,7 @@ namespace ScuffedCountdown.Client.Components.Molecules
         private FreeDictionaryResponse? _Definition { get; set; }
         private IJSObjectReference _JsModule = default!;
 
+        private string _DictionaryInputId { get; set; } = Guid.NewGuid().Short();
         private string? _DictionaryInputValue { get; set; }
         private string? _LastInput;
 
@@ -60,28 +61,51 @@ namespace ScuffedCountdown.Client.Components.Molecules
             StateHasChanged();
         }
 
-        //private void DictionaryInput_OnInput(ChangeEventArgs e)
-        //{
-        //    var value = (string)(e.Value ?? "");
+        private async Task SetDictionaryInputValue(string value)
+        {
+            await _JsModule.InvokeVoidAsync("setDictionaryInputValue", value, _DictionaryInputId);
+        }
 
-        //    if (_LastInput == null) // First input
-        //    {
-        //        _LastInput = value;
-        //        return;
-        //    }
+        private async void DictionaryInput_OnInput(ChangeEventArgs e)
+        {
+            var value = (string)(e.Value ?? "");
 
-        //    if (_LastInput.Count() >= value.Count()) // Deletion or other
-        //        return;
+            if (_LastInput == null) // First input
+                _LastInput = "";
 
-        //    var input = char.ToUpper(value.Last());
-        //    if (_AvailableLetters.Contains(input))
-        //        _DictionaryInputValue += input;
-        //    else
-        //        _DictionaryInputValue = _LastInput;
+            if (Math.Abs(_LastInput.Count() - value.Count()) > 1)
+            {
+                // many paste or big delete we no like
+                await SetDictionaryInputValue(_LastInput);
+                return;
+            }
 
-        //    _LastInput = _DictionaryInputValue;
+            if (_LastInput.Count() > value.Count()) // Backspace
+            {
+                char deletedChar;
+                if (value == "")
+                    deletedChar = Convert.ToChar(_LastInput);
+                else
+                    deletedChar = Convert.ToChar(_LastInput.Replace(value, ""));
 
-        //    StateHasChanged();
-        //}
+                _LastInput = value;
+                _AvailableLetters.Add(deletedChar);
+                return;
+            } 
+
+            var input = char.ToUpper(value.Last());
+
+            string newInput;
+            if (_AvailableLetters.Contains(input))
+            {
+                newInput = _LastInput + input;
+                _AvailableLetters.Remove(input);
+            }
+            else
+                newInput = _LastInput;
+
+            await SetDictionaryInputValue(newInput);
+            _LastInput = newInput;
+        }
     }
 }

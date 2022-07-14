@@ -1,6 +1,7 @@
-﻿<div class="letters-round-evaluator">
+﻿@using System.Diagnostics
+<div class="letters-round-evaluator">
 
-    <input class="dictionary-input" type="text" placeholder="Dictionary lookup" @bind=_DictionaryInputValue @onkeyup=DictionaryInput_OnKeyUp />
+    <input id=@_DictionaryInputId class="dictionary-input" type="text" placeholder="Dictionary lookup" @bind=_DictionaryInputValue @onkeyup=DictionaryInput_OnKeyUp @oninput=DictionaryInput_OnInput />
 
     @if (_Definition != null)
     {
@@ -25,5 +26,13 @@
 
         </div>
     }
-
+    @if (Debugger.IsAttached && true)
+    {
+        <div>
+            @foreach (var letter in _AvailableLetters)
+            {
+                <span>@letter | </span>
+            }
+        </div>
+    }
 </div>
