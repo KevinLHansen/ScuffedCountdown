@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v2.1.0
+        with:
+          dotnet-version: 6.0.*
+          
+      - name: Publish
+        run: dotnet publish Server/ScuffedCountdown.Server.csproj -c Release -o release --nologo
+        
+      - name: Set base path
+        run: sed -i 's/<base href="\/" \/>/<base href="\/ScuffedCountdown\/" \/>/g' release/wwwroot/index.html
+        
+      - name: Disable Jekyll
+        run: touch release/wwwroot/.nojekyll
+        
+      - name: Commit to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: github-pages
+          FOLDER: release/wwwroot
