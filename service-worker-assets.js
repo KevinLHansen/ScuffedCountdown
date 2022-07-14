@@ -33,7 +33,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-cst4AyQeaZxWfTxim5byePh13DNKX46O0koI6JRER5M=",
+      "hash": "sha256-yNtaGHBjS\/e7omA0gtpnbfYY5a4nhfuk7b6fHhBse6s=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -121,7 +121,7 @@
       "url": "_framework\/Refit.HttpClientFactory.dll"
     },
     {
-      "hash": "sha256-XLbMz2XH4rcXpSo+TDKPJ5JWQ92NjbEP8l8PfztaVlA=",
+      "hash": "sha256-+ZVStQLSa9ne3igjKLrs9DTP84u7Q6iYNFtc0EYEIVw=",
       "url": "_framework\/ScuffedCountdown.Client.dll"
     },
     {
@@ -161,7 +161,7 @@
       "url": "_framework\/System.dll"
     },
     {
-      "hash": "sha256-JxWzO6v1FG2Fx5yWjs+xUTSHDLntYzQqitLd7bNG7jc=",
+      "hash": "sha256-Dt5hhvajGAmZcQKJsOydZyMK024JTGH8xCK0E93rsHw=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -205,7 +205,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-wceYlti2ER6D05zYr0xdEWtXgguYdSQf5xr1rxC0l1I=",
+      "hash": "sha256-hWGpi8Z71g3mfGnEvAyE3k9g85MqiArJ1G\/iGPHHkow=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -245,6 +245,10 @@
       "url": "Components\/Molecules\/LettersRoundEvaluator.razor.js"
     },
     {
+      "hash": "sha256-ZayvXIxiSaZAtBoZByeMbF2Q9s9UTNUVWjpJsLcjmjY=",
+      "url": "Components\/Molecules\/NumbersRoundEvaluator.razor.js"
+    },
+    {
       "hash": "sha256-kNE+58Ei2jlFnWAPNG3ujyVhizQyiqdTKDCbv5fXAEM=",
       "url": "Shared\/MainLayout.razor.js"
     },
@@ -261,7 +265,7 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-HNcy2Ae8lHa1SePpJGto5l3aEdWl\/zO7UzoDcudQ+wc=",
+      "hash": "sha256-HMEf\/0tLN1SLpOoZBD00E0dUNzj6mrpA7\/y1nWJKbeM=",
       "url": "js\/common.js"
     },
     {
@@ -273,9 +277,13 @@
       "url": "sfx\/countdown.mp3"
     },
     {
+      "hash": "sha256-63VFjDKMh+RnTMTDT8qmmeN5i4dmfEX2rrlwFV8+XAY=",
+      "url": "sfx\/error.wav"
+    },
+    {
       "hash": "sha256-ab3Ur6XCuWdhKAmUORM8bl7hMwiocB\/daadp2vq0nyI=",
       "url": "ScuffedCountdown.Client.styles.css"
     }
   ],
-  "version": "2GX2pDPY"
+  "version": "VmLyZroq"
 };
