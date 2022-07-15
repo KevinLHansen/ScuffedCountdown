@@ -31,5 +31,10 @@ services
     {
         conf.BaseAddress = IFreeDictionaryApi.BaseUri;
     });
+services.AddRefitClient<IUrbanDictionaryApi>()
+    .ConfigureHttpClient(conf =>
+    {
+        conf.BaseAddress = IUrbanDictionaryApi.BaseUri;
+    });
 
 await builder.Build().RunAsync();

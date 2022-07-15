@@ -37,6 +37,9 @@
 }
 .page .settings {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   background: var(--k-color-primary-80);
   padding: 16px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 15px 5px;
@@ -47,16 +50,35 @@
 .page .settings.visible {
   transform: translate(-100%, 0);
 }
-.page .settings .color-picker {
+.page .settings .color-settings {
   position: relative;
   display: flex;
   align-items: center;
 }
-.page .settings .color-picker input {
+.page .settings .color-settings input {
   visibility: hidden;
   position: absolute;
   width: 0;
   height: 0;
   left: 0;
   bottom: 0;
+}
+.page .settings .dictionary-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.page .settings .dictionary-settings .header {
+  color: var(--k-color-primary-20);
+  font-size: 24px;
+  font-weight: 500;
+}
+.page .settings .dictionary-settings .dictionary {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--k-color-primary-20);
+}
+.page .settings .dictionary-settings .dictionary .input {
+  width: 25px;
 }

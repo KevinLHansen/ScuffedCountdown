@@ -16,12 +16,26 @@
     </div>
 
     <div class="settings @_SettingsCssClasses">
-        <div class="color-picker">
+        <div class="color-settings">
             <input id=@_ColorPickerInputId type="color" @onchange=ColorPicker_OnChange />
             <KButton OnClick=ColorPickerButton_OnClick Style=KButtonStyle.Light>
                 <KIcon IconName="palette" Size=32 />
                 Theme color
             </KButton>
+        </div>
+
+        <div class="dictionary-settings">
+            <div class="header">Dictionaries</div>
+
+            <label class="dictionary">
+                <input id=@_FreeDictionaryCheckboxId type="checkbox" @onchange=FreeDictionaryCheckbox_OnChange />
+                <span>FreeDictionary</span>
+            </label>
+
+            <label class="dictionary">
+                <input id=@_UrbanDictionaryCheckboxId type="checkbox" @onchange=UrbanDictionaryCheckbox_OnChange />
+                <span>UrbanDictionary</span>
+            </label>
         </div>
     </div>
 </div>

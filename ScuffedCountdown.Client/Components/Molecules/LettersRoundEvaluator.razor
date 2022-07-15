@@ -1,38 +1,52 @@
 ﻿@using System.Diagnostics
 <div class="letters-round-evaluator">
 
-    <input id=@_DictionaryInputId class="dictionary-input" type="text" placeholder="Dictionary lookup" @bind=_DictionaryInputValue @onkeyup=DictionaryInput_OnKeyUp @oninput=DictionaryInput_OnInput />
+    <div class="input-container">
+        <input id=@_DictionaryInputId class="dictionary-input" type="text" placeholder="Dictionary lookup" @bind=_DictionaryInputValue @onkeyup=DictionaryInput_OnKeyUp @oninput=DictionaryInput_OnInput />
+    </div>
 
-    @if (_Definition != null)
+
+    @if (_DefinitionsLookups.Any())
     {
-        <div class="definition-container">
-
-            <div class="header">
-                <span class="word">@_Definition.Word</span>
-                <span class="phonetic">@_Definition.Phonetics.FirstOrDefault(x => x.Text != null)?.Text</span>
-            </div>
-
-            @foreach (var meaning in _Definition.Meanings)
+        <div class="definitions-container">
+            @foreach (var lookup in _DefinitionsLookups)
             {
-                <div class="meaning">
-                    <div class="part-of-speech">@meaning.PartOfSpeech</div>
+                <div class="definition-container">
 
-                    @foreach (var definition in meaning.Definitions)
-                    {
-                        <div class="definition">@definition.Definition</div>
-                    }
+                    <div class="header-container">
+                        @lookup.Dictionary
+                    </div>
+
+                    <div class="content-container">
+                        <div class="word-container">
+                            <span class="word">@lookup.Word</span>
+                            <span class="phonetic">@lookup.Phonetic</span>
+                        </div>
+
+                        @foreach (var definition in lookup.Definitions)
+                        {
+                            <div class="meaning">
+                                <div class="part-of-speech">@definition.PartOfSpeech</div>
+
+                                @foreach (var definitionText in definition.Definitions)
+                                {
+                                    <div class="definition">@definitionText</div>
+                                }
+                            </div>
+                        }
+                    </div>
                 </div>
-            }
-
-        </div>
-    }
-    @if (Debugger.IsAttached && true)
-    {
-        <div>
-            @foreach (var letter in _AvailableLetters)
-            {
-                <span>@letter | </span>
             }
         </div>
     }
 </div>
+
+@if (Debugger.IsAttached && false)
+{
+    <div>
+        @foreach (var letter in _AvailableLetters)
+        {
+            <span>@letter | </span>
+        }
+    </div>
+}

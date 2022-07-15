@@ -12,6 +12,7 @@
     --k-color-primary-70: hsl(var(--k-color-primary-base), 70%);
     --k-color-primary-80: hsl(var(--k-color-primary-base), 80%);
     --k-color-primary-90: hsl(var(--k-color-primary-base), 90%);
+    --k-color-primary-95: hsl(var(--k-color-primary-base), 95%);
     --k-color-neutral-base: 4, 0%;
     --k-color-neutral-10: hsl(var(--k-color-neutral-base), 10%);
     --k-color-neutral-20: hsl(var(--k-color-neutral-base), 20%);
@@ -54,11 +55,11 @@ html, body {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--k-color-primary-20);
-    border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

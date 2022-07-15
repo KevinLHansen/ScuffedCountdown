@@ -13,15 +13,19 @@ namespace ScuffedCountdown.Client.Components.Molecules
         [Inject]
         private IFreeDictionaryApi _DictionaryApi { get; set; } = default!;
         [Inject]
+        private IUrbanDictionaryApi _UrbanDictionaryApi { get; set; } = default!;
+        [Inject]
         private IJSRuntime _Js { get; set; } = default!;
         [Inject]
         private CommonJsService _CommonJs { get; set; } = default!;
+        [Inject]
+        private StateManager _StateManager { get; set; } = default!;
 
         [Parameter, EditorRequired]
         public List<char> Letters { get; set; } = default!;
         private List<char> _AvailableLetters = new();
 
-        private FreeDictionaryResponse? _Definition { get; set; }
+        private List<DefinitionLookupModel> _DefinitionsLookups { get; set; } = new();
         private IJSObjectReference _JsModule = default!;
 
         private string _DictionaryInputId = Guid.NewGuid().Short();
@@ -48,21 +52,30 @@ namespace ScuffedCountdown.Client.Components.Molecules
                 case "Enter":
                     if (_DictionaryInputValue != null && _DictionaryInputValue.Count() > 0)
                     {
-                        try
+                        _DefinitionsLookups.Clear();
+                        var word = _DictionaryInputValue;
+                        var state = await _StateManager.GetState();
+
+                        if (state.UserSettings.UseFreeDictionary)
                         {
-                            var dictionaryResult = await _DictionaryApi.GetDefinition(FreeDictionaryApiLanguages.English, _DictionaryInputValue);
-                            _Definition = dictionaryResult.FirstOrDefault();
+                            var freeDictionaryDefinition = await GetFreeDictionaryDefinition(word);
+                            if (freeDictionaryDefinition != null)
+                                _DefinitionsLookups.Add(freeDictionaryDefinition);
                         }
-                        catch (ApiException)
+
+                        if (state.UserSettings.UseUrbanDictionary)
                         {
-                            // No definition for word
-                            _Definition = null;
+                            var urbanDictionaryDefinition = await GetUrbanDictionaryDefinition(word);
+                            if (urbanDictionaryDefinition != null)
+                                _DefinitionsLookups.Add(urbanDictionaryDefinition);
+                        }
+
+                        if (!_DefinitionsLookups.Any())
                             await _CommonJs.PlayErrorSound();
-                        }
                     }
+                    StateHasChanged();
                     break;
             }
-            StateHasChanged();
         }
 
         private async Task SetDictionaryInputValue(string value)
@@ -90,7 +103,7 @@ namespace ScuffedCountdown.Client.Components.Molecules
                 _LastInput = value;
                 _AvailableLetters.Add(deletedChar);
                 return;
-            } 
+            }
 
             var input = char.ToUpper(value.Last());
 
@@ -109,5 +122,97 @@ namespace ScuffedCountdown.Client.Components.Molecules
             await SetDictionaryInputValue(newInput);
             _LastInput = newInput;
         }
+
+        private async Task<DefinitionLookupModel?> GetUrbanDictionaryDefinition(string word)
+        {
+            try
+            {
+
+                var result = await _UrbanDictionaryApi.GetDefinition(word);
+                result.List.RemoveAll(x => x.Word.ToUpper() != word.ToUpper());
+                result.List.OrderByDescending(x => x.Score);
+
+                return result.List.Any()
+                    ? GetLookupModel(result, word)
+                    : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private async Task<DefinitionLookupModel?> GetFreeDictionaryDefinition(string word)
+        {
+            try
+            {
+                var result = await _DictionaryApi.GetDefinition(FreeDictionaryApiLanguages.English, word);
+                return GetLookupModel(result, word);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private DefinitionLookupModel GetLookupModel(List<FreeDictionaryResponse> response, string word)
+        {
+            var definition = response.First();
+
+            var model = new DefinitionLookupModel
+            {
+                Dictionary = "FreeDictionary",
+                Word = word,
+                Phonetic = definition.Phonetics.First().Text,
+            };
+
+            foreach (var meaning in definition.Meanings)
+            {
+                var definitionModel = new DefinitionModel
+                {
+                    PartOfSpeech = meaning.PartOfSpeech,
+                    Definitions = meaning.Definitions.Select(x => x.Definition).ToList()
+                };
+                model.Definitions.Add(definitionModel);
+            }
+            return model;
+        }
+
+        private DefinitionLookupModel GetLookupModel(UrbanDictionaryResponse response, string word)
+        {
+            var model = new DefinitionLookupModel
+            {
+                Dictionary = "UrbanDictionary",
+                Word = word,
+            };
+
+            foreach (var definition in response.List)
+            {
+                model.Definitions.Add(new DefinitionModel
+                {
+                    Definitions = new()
+                    {
+                        definition.Definition
+                    }
+                });
+            }
+
+            return model;
+        }
+    }
+
+    public class DefinitionLookupModel
+    {
+        public string Dictionary { get; set; } = default!;
+        public string Word { get; set; } = default!;
+        public string? Phonetic { get; set; }
+
+        public List<DefinitionModel> Definitions { get; set; } = new();
+    }
+
+    public class DefinitionModel
+    {
+        public string? PartOfSpeech { get; set; }
+        public List<string> Definitions { get; set; } = default!;
     }
 }

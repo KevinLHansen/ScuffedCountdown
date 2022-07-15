@@ -2,6 +2,7 @@
 using ColorHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using ScuffedCountdown.Client.Extensions;
 using ScuffedCountdown.Client.Services;
 
 namespace ScuffedCountdown.Client.Shared
@@ -18,7 +19,9 @@ namespace ScuffedCountdown.Client.Shared
         private IJSObjectReference _Js { get; set; } = default!;
 
         private bool _SettingsVisible = false;
-        private string _ColorPickerInputId = Guid.NewGuid().ToString();
+        private string _ColorPickerInputId = Guid.NewGuid().Short();
+        private string _FreeDictionaryCheckboxId = Guid.NewGuid().Short();
+        private string _UrbanDictionaryCheckboxId = Guid.NewGuid().Short();
 
         protected override async Task OnInitializedAsync()
         {
@@ -26,6 +29,7 @@ namespace ScuffedCountdown.Client.Shared
 
             _Js = await _JsRuntime.InvokeAsync<IJSObjectReference>("import", $"./Shared/MainLayout.razor.js");
             await SetColorPickerInputValue();
+            await SetCheckboxStates();
         }
 
         private async Task SetColorPickerInputValue()
@@ -33,6 +37,13 @@ namespace ScuffedCountdown.Client.Shared
             var themeColor = (await _StateManager.GetState()).UserSettings.ThemeColor;
             if (themeColor != null)
                 await _Js.InvokeVoidAsync("setColorInputValue", _ColorPickerInputId, $"#{ColorConverter.HslToHex(themeColor)}");
+        }
+
+        private async Task SetCheckboxStates()
+        {
+            var userSettings = (await _StateManager.GetState()).UserSettings;
+            await _Js.InvokeVoidAsync("setCheckboxState", _FreeDictionaryCheckboxId, userSettings.UseFreeDictionary);
+            await _Js.InvokeVoidAsync("setCheckboxState", _UrbanDictionaryCheckboxId, userSettings.UseUrbanDictionary);
         }
 
         private string _SettingsButtonCssClasses => new CssBuilder()
@@ -48,12 +59,12 @@ namespace ScuffedCountdown.Client.Shared
             _SettingsVisible = !_SettingsVisible;
         }
 
-        private async Task ColorPickerButton_OnClick()
+        private async void ColorPickerButton_OnClick()
         {
             await _CommonJs.ClickElement(_ColorPickerInputId);
         }
 
-        private async Task ColorPicker_OnChange(ChangeEventArgs e)
+        private async void ColorPicker_OnChange(ChangeEventArgs e)
         {
             var color = e.Value;
             if (color == null)
@@ -65,6 +76,30 @@ namespace ScuffedCountdown.Client.Shared
             await _StateManager.ModifyState(state =>
             {
                 state.UserSettings.ThemeColor = hsl;
+            });
+        }
+
+        private async void FreeDictionaryCheckbox_OnChange(ChangeEventArgs e)
+        {
+            if (e.Value == null)
+                return;
+
+            var useFreeDictionary = (bool)e.Value;
+            await _StateManager.ModifyState(state =>
+            {
+                state.UserSettings.UseFreeDictionary = useFreeDictionary;
+            });
+        }
+
+        private async void UrbanDictionaryCheckbox_OnChange(ChangeEventArgs e)
+        {
+            if (e.Value == null)
+                return;
+
+            var useUrbanDictionary = (bool)e.Value;
+            await _StateManager.ModifyState(state =>
+            {
+                state.UserSettings.UseUrbanDictionary = useUrbanDictionary;
             });
         }
     }

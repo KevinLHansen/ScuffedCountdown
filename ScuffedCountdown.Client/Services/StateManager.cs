@@ -53,6 +53,8 @@ namespace ScuffedCountdown.Client.Services
     public class UserSettings
     {
         public HSL? ThemeColor { get; set; }
+        public bool UseFreeDictionary { get; set; } = true;
+        public bool UseUrbanDictionary { get; set; } = true;
     }
 
     public class GameState

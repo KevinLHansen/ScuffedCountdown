@@ -42,6 +42,9 @@
 
     .settings {
         position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         background: var(--k-color-primary-80);
         padding: 16px;
         box-shadow: rgba(0,0,0,.1) 0 0 15px 5px;
@@ -53,7 +56,7 @@
             transform: translate(-100%, 0);
         }
 
-        .color-picker {
+        .color-settings {
             position: relative;
             display: flex;
             align-items: center;
@@ -65,6 +68,29 @@
                 height: 0;
                 left: 0;
                 bottom: 0;
+            }
+        }
+
+        .dictionary-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .header {
+                color: var(--k-color-primary-20);
+                font-size: 24px;
+                font-weight: 500;
+            }
+
+            .dictionary {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                color: var(--k-color-primary-20);
+
+                .input {
+                    width: 25px;
+                }
             }
         }
     }
