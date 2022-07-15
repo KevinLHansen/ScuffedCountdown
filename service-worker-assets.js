@@ -33,7 +33,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-yNtaGHBjS\/e7omA0gtpnbfYY5a4nhfuk7b6fHhBse6s=",
+      "hash": "sha256-EJNoWO8eqdKzv4AgPWDn8IrP8Hdl41naI427oXIK198=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -49,7 +49,7 @@
       "url": "_framework\/ColorHelper.dll"
     },
     {
-      "hash": "sha256-mmhz7hCVqqs7p2BXpEucazYWkUutXNPX+qwv3T3RqBM=",
+      "hash": "sha256-RQeabC1PgdUpuNHr5dI9Zrdp7d9fOylWnX9LqQXbRu0=",
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
     },
     {
@@ -121,7 +121,7 @@
       "url": "_framework\/Refit.HttpClientFactory.dll"
     },
     {
-      "hash": "sha256-+ZVStQLSa9ne3igjKLrs9DTP84u7Q6iYNFtc0EYEIVw=",
+      "hash": "sha256-PCC0yYf1lT6qzuLmNhC6VzTYKqq+8upZeGiT\/E8dD7w=",
       "url": "_framework\/ScuffedCountdown.Client.dll"
     },
     {
@@ -161,7 +161,7 @@
       "url": "_framework\/System.dll"
     },
     {
-      "hash": "sha256-Dt5hhvajGAmZcQKJsOydZyMK024JTGH8xCK0E93rsHw=",
+      "hash": "sha256-UcmfPTQQCPwpo4mToDZIvrWhJFqmqxnMXVG7u1XIStk=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -185,7 +185,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-f8ZYkh2Ovd0drvV8+6tZIm8MgKhjtrQfDOsi8C\/Gtpc=",
+      "hash": "sha256-optSj\/9d6robWQuNL1+CBDRtJT61wBEr5sundPJqT9g=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -205,7 +205,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-hWGpi8Z71g3mfGnEvAyE3k9g85MqiArJ1G\/iGPHHkow=",
+      "hash": "sha256-IevNz1FnTzfOJ1tGTUeOyLqzRpKYMqMYduUfPChAlW4=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -249,11 +249,11 @@
       "url": "Components\/Molecules\/NumbersRoundEvaluator.razor.js"
     },
     {
-      "hash": "sha256-kNE+58Ei2jlFnWAPNG3ujyVhizQyiqdTKDCbv5fXAEM=",
+      "hash": "sha256-WBiGoPHouebSkYgyt\/c2t1J+4ox4xnHBk+R4YL8u1pU=",
       "url": "Shared\/MainLayout.razor.js"
     },
     {
-      "hash": "sha256-B1ZzcYv0noFIhsutQ0QosD+COQaWW6PykKeHlGyGJOA=",
+      "hash": "sha256-XYeZDvtKarkcSQ1Hoh0S3+j\/hxiX\/WscUmzzW1RkcJc=",
       "url": "css\/app.css"
     },
     {
@@ -281,9 +281,9 @@
       "url": "sfx\/error.wav"
     },
     {
-      "hash": "sha256-ab3Ur6XCuWdhKAmUORM8bl7hMwiocB\/daadp2vq0nyI=",
+      "hash": "sha256-Jgl8XZBFhjkNQ8xVRYAneDUDYPovItmRbII3BvvsbYY=",
       "url": "ScuffedCountdown.Client.styles.css"
     }
   ],
-  "version": "VmLyZroq"
+  "version": "a7yuUPyt"
 };
